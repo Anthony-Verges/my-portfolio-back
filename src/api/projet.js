@@ -28,7 +28,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-//POST PROJECT
+//POST A PROJECT
 router.post("/", (req, res) => {
   const { name, description, date } = req.body;
   const sql = "INSERT INTO projet (name, description, date) VALUES (?,?,?)";
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
       }
 
       return connection.query(
-        "SELECT * FROMprojet WHERE id = ?",
+        "SELECT * FROM projet WHERE id = ?",
         results,
         insertId,
         (err2, records) => {
@@ -61,7 +61,7 @@ router.post("/", (req, res) => {
   );
 });
 
-//DELETE
+//DELETE BY ID
 router.delete("/:id", (req, res) => {
   const sql = "DELETE FROM projet where id=?";
   connection.query(sql, [req.params.id], (err, results) => {
@@ -74,7 +74,7 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-// PUT PROJET
+// PUT PROJET BY ID
 router.put("/:id", (req, res) => {
   const idProjet = req.params.id;
   const updateProjet = req.body;
